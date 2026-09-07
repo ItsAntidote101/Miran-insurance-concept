@@ -295,13 +295,16 @@
     padding-bottom:clamp(2rem,4vw,3rem);
     min-height:640px;
     display:flex; flex-direction:column; justify-content:flex-end;
-    gap:clamp(2rem,5vw,3.5rem);
     color:var(--white);
     background:
       linear-gradient(100deg, rgba(14,64,103,0.88) 0%, rgba(14,64,103,0.5) 48%, rgba(14,64,103,0.18) 100%),
       linear-gradient(0deg, rgba(14,64,103,0.8) 0%, rgba(14,64,103,0) 38%),
       url('assets/hero-photo.jpg') center/cover no-repeat;
   }
+  /* single shared column so hero-inner and hero-tags share the exact
+     same left edge as the header and every other section's .container */
+  .hero-body{ width:100%; }
+  .hero-content-wrap{ display:flex; flex-direction:column; gap:clamp(2rem,5vw,3.5rem); }
   .hero-inner{ max-width:42rem; }
   .hero h1{
     color:var(--white);
@@ -956,21 +959,25 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="container hero-inner">
-      <h1>Kenya&rsquo;s institutions<span class="hero-rule" aria-hidden="true"></span><br>trust us with their risk.</h1>
-      <p>Miran Insurance Brokers has placed and managed commercial risk programmes for Kenya&rsquo;s ports, airports, revenue authority and universities since 2003. ISO 9001:2015 certified.</p>
-      <div class="hero-ctas">
-        <a href="#contact" class="btn btn-primary">Request a Quote</a>
-        <a href="#contact" class="icon-btn icon-btn--accent" aria-label="Request a Quote">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
-        </a>
-        <a href="tel:+254208146932" class="hero-link">Talk to a broker &rarr;</a>
+    <div class="hero-body">
+      <div class="container hero-content-wrap">
+        <div class="hero-inner">
+          <h1>Kenya&rsquo;s institutions<span class="hero-rule" aria-hidden="true"></span><br>trust us with their risk.</h1>
+          <p>Miran Insurance Brokers has placed and managed commercial risk programmes for Kenya&rsquo;s ports, airports, revenue authority and universities since 2003. ISO 9001:2015 certified.</p>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary">Request a Quote</a>
+            <a href="#contact" class="icon-btn icon-btn--accent" aria-label="Request a Quote">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <a href="tel:+254208146932" class="hero-link">Talk to a broker &rarr;</a>
+          </div>
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag">Risk Placement</span>
+          <span class="hero-tag">Claims Advocacy</span>
+          <span class="hero-tag">ISO 9001:2015 Certified</span>
+        </div>
       </div>
-    </div>
-    <div class="container hero-tags">
-      <span class="hero-tag">Risk Placement</span>
-      <span class="hero-tag">Claims Advocacy</span>
-      <span class="hero-tag">ISO 9001:2015 Certified</span>
     </div>
   </section>
 
