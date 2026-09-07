@@ -645,6 +645,192 @@
   @media (max-width: 560px){
     .section{ padding-block:clamp(2.75rem,10vw,4rem); }
   }
+
+  /* ---------------------------------------------------------
+     SHARED COMPONENTS — tag pills, icon buttons, icon badges
+  --------------------------------------------------------- */
+  .tag-pill{
+    display:inline-flex; align-items:center;
+    padding:0.4rem 0.95rem;
+    border:1px solid var(--n-300);
+    border-radius:100px;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--primary);
+    background:var(--white);
+  }
+  .tag-pill--dark{ border-color:rgba(28,75,66,0.35); background:rgba(28,75,66,0.06); }
+  .tag-pill--invert{ border-color:rgba(255,255,255,0.4); color:var(--white); background:transparent; }
+
+  .icon-btn{
+    flex:none;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--white);
+    color:var(--primary);
+    box-shadow:0 1px 2px rgba(15,38,33,0.12);
+    transition:background-color .18s ease;
+  }
+  .icon-btn svg{ width:18px; height:18px; transition:transform .18s ease; }
+  a.icon-btn:hover, a.icon-btn:focus-visible{ background:var(--accent); }
+  a.icon-btn:hover svg, a.icon-btn:focus-visible svg{ transform:translate(2px,-2px); }
+  .icon-btn--dark{ background:var(--primary); color:var(--white); box-shadow:none; }
+  .icon-btn--dark:hover, .icon-btn--dark:focus-visible{ background:var(--accent); color:var(--primary); }
+
+  .icon-badge{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px;
+    border-radius:50%;
+    background:var(--n-100);
+    color:var(--primary);
+    margin-bottom:1rem;
+  }
+  .icon-badge svg{ width:20px; height:20px; }
+
+  /* ---------------------------------------------------------
+     BENTO INTRO (Who we are / Credentials / Resources)
+  --------------------------------------------------------- */
+  .bento-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:1.25rem;
+    align-items:stretch;
+  }
+  .bento-card{
+    border-radius:16px;
+    padding:1.85rem;
+    display:flex; flex-direction:column;
+    min-height:360px;
+  }
+  .bento-card--light{ background:var(--n-50); border:1px solid var(--n-200); }
+  .bento-card--accent{ background:var(--accent); color:var(--primary); justify-content:flex-end; }
+  .bento-card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:1.5rem; }
+  .bento-card h3{ font-size:1.25rem; margin-bottom:0; }
+  .bento-card--accent h3{ color:var(--primary); font-size:1.15rem; }
+  .bento-card-bottom{ margin-top:auto; }
+  .bento-card-bottom .tag-pill{ margin-bottom:1rem; background:rgba(28,75,66,0.08); border-color:rgba(28,75,66,0.3); }
+  .bento-card-row{ display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; }
+  .bento-graphic{ margin-top:auto; flex:1; display:flex; align-items:flex-end; justify-content:flex-end; min-height:110px; }
+  .bento-graphic svg{ width:100%; height:auto; max-height:130px; }
+  .bento-blob{ flex:1; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; min-height:130px; }
+  .bento-blob svg{ width:75%; height:auto; }
+  @media (max-width: 900px){
+    .bento-grid{ grid-template-columns:1fr; }
+    .bento-card{ min-height:auto; }
+  }
+
+  /* ---------------------------------------------------------
+     PHILOSOPHY BAND (dark gradient, glass cards)
+  --------------------------------------------------------- */
+  .philosophy-band{
+    background:linear-gradient(135deg, var(--primary) 0%, var(--primary-900) 100%);
+    color:var(--white);
+  }
+  .philosophy-band .tag-pill--invert{ margin-bottom:1.5rem; }
+  .philosophy-band h2{
+    color:var(--white);
+    font-size:clamp(1.6rem,3.2vw,2.4rem);
+    max-width:40rem;
+    display:flex; flex-direction:column; align-items:flex-start; gap:1rem;
+    margin-bottom:clamp(2.5rem,4vw,3.5rem);
+  }
+  .philosophy-rule{ display:block; width:4.5rem; height:2px; background:var(--accent); }
+  .philosophy-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1.25rem;
+  }
+  .philosophy-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:14px;
+    padding:1.75rem;
+  }
+  .philosophy-card svg{ width:26px; height:26px; margin-bottom:1.25rem; }
+  .philosophy-card h3{ color:var(--white); font-size:1.05rem; }
+  .philosophy-card p{ color:rgba(255,255,255,0.75); font-size:0.92rem; margin:0; }
+  @media (max-width: 900px){
+    .philosophy-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 560px){
+    .philosophy-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------------------------------------------------------
+     HIGHLIGHT SPLIT (track record + testimonial slot)
+  --------------------------------------------------------- */
+  .highlight-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.25rem;
+    align-items:stretch;
+  }
+  .highlight-quote{
+    background:var(--primary);
+    color:var(--white);
+    border-radius:16px;
+    padding:clamp(2rem,3vw,2.75rem);
+    display:flex; flex-direction:column; justify-content:center;
+    min-height:340px;
+  }
+  .highlight-quote .quote-mark{
+    font-family:var(--font-heading);
+    font-size:3rem; line-height:1;
+    color:var(--accent);
+    margin-bottom:1rem;
+    display:block;
+  }
+  .highlight-quote .quote-text{
+    font-family:var(--font-heading);
+    font-size:1.15rem;
+    font-weight:500;
+    color:var(--white);
+    font-style:italic;
+    max-width:26rem;
+    margin-bottom:0;
+  }
+  .quote-attribution{
+    display:flex; align-items:center; gap:0.85rem;
+    margin-top:1.5rem;
+    padding-top:1.5rem;
+    border-top:1px solid rgba(255,255,255,0.2);
+    font-size:0.9rem;
+    color:rgba(255,255,255,0.75);
+  }
+  .quote-avatar{
+    flex:none;
+    width:40px; height:40px; border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-heading); font-weight:600; color:var(--accent);
+  }
+  .highlight-card{
+    background:var(--accent);
+    color:var(--primary);
+    border-radius:16px;
+    padding:clamp(2rem,3vw,2.75rem);
+    display:flex; flex-direction:column;
+    min-height:340px;
+  }
+  .highlight-card .tag-pill--dark{ align-self:flex-start; margin-bottom:1.25rem; }
+  .highlight-card .icon-badge{ background:var(--primary); color:var(--accent); }
+  .highlight-card h3{ color:var(--primary); font-size:1.4rem; margin-bottom:1.5rem; }
+  .highlight-stat{
+    margin-top:auto;
+    padding-top:1.5rem;
+    border-top:1px solid rgba(28,75,66,0.2);
+    display:flex; align-items:baseline; gap:1rem;
+    margin-bottom:1.75rem;
+  }
+  .highlight-stat .stat-figure{ color:var(--primary); font-size:2.25rem; }
+  .highlight-stat span:last-child{ font-size:0.92rem; max-width:14rem; }
+  @media (max-width: 860px){
+    .highlight-grid{ grid-template-columns:1fr; }
+  }
 </style>
 </head>
 <body>
@@ -759,6 +945,67 @@
     </div>
   </section>
 
+  <!-- ============ INTRO BENTO ============ -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="bento-grid">
+        <div class="bento-card bento-card--light">
+          <div class="bento-card-top">
+            <span class="tag-pill">Who we are</span>
+            <a href="#about" class="icon-btn" aria-label="Read more about Miran Insurance Brokers">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+          <h3>A full-line broker built for Kenya&rsquo;s institutions</h3>
+          <div class="bento-graphic" aria-hidden="true">
+            <svg viewBox="0 0 160 120" fill="none">
+              <circle cx="60" cy="60" r="46" stroke="#C3CFC0" stroke-width="1.5"/>
+              <circle cx="95" cy="60" r="32" stroke="#1C4B42" stroke-width="1.5" opacity="0.35"/>
+              <circle cx="60" cy="60" r="6" fill="#B4E717"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card--accent">
+          <div class="bento-blob" aria-hidden="true">
+            <svg viewBox="0 0 140 140" fill="none">
+              <circle cx="70" cy="70" r="52" fill="rgba(28,75,66,0.12)"/>
+              <circle cx="70" cy="70" r="52" stroke="#1C4B42" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <path d="M50 70l14 14 26-30" stroke="#1C4B42" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="bento-card-bottom">
+            <span class="tag-pill tag-pill--dark">Credentials</span>
+            <div class="bento-card-row">
+              <h3>ISO 9001:2015<br>certified broker</h3>
+              <a href="#quality" class="icon-btn icon-btn--dark" aria-label="See our ISO 9001:2015 certification">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card--light">
+          <div class="bento-card-top">
+            <span class="tag-pill">Resources</span>
+            <a href="#resources" class="icon-btn" aria-label="Find claim forms and broker support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+          <h3>Claim forms and direct broker support</h3>
+          <div class="bento-graphic" aria-hidden="true">
+            <svg viewBox="0 0 160 120" fill="none">
+              <rect x="40" y="16" width="70" height="92" rx="6" stroke="#C3CFC0" stroke-width="1.5"/>
+              <line x1="52" y1="38" x2="98" y2="38" stroke="#1C4B42" stroke-width="2" opacity="0.5"/>
+              <line x1="52" y1="52" x2="98" y2="52" stroke="#1C4B42" stroke-width="2" opacity="0.5"/>
+              <line x1="52" y1="66" x2="86" y2="66" stroke="#B4E717" stroke-width="3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ TWO LANES ============ -->
   <section class="section">
     <div class="container">
@@ -792,36 +1039,74 @@
       </div>
       <div class="lines-grid">
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></span>
           <h3>Property &amp; Assets <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Fire &amp; perils, burglary, all risks, industrial all risks, plate glass, stock floater, domestic package</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="2"/><path d="M12 8v10M6 14a6 6 0 0012 0M4 14h2M18 14h2"/></svg></span>
           <h3>Marine &amp; Transit <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Marine cargo (ICC A/B/C), goods in transit</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span>
           <h3>Engineering &amp; Equipment <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Machinery, computer &amp; electronic, Microsure</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="3" height="10"/><rect x="15" y="4" width="3" height="16"/></svg></span>
           <h3>Business Interruption <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Consequential loss — fire &amp; perils, and engineering</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 6h6L5 7zM19 7l-3 6h6l-3-6z"/></svg></span>
           <h3>Liability <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Public &amp; products, employers, professional indemnity, directors &amp; officers</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></span>
           <h3>Crime &amp; Financial Lines <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Fidelity guarantee, bankers blanket bond, money, kidnap &amp; ransom</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3-5 7-5s7 1.7 7 5"/><circle cx="17" cy="9" r="2.3"/><path d="M22 20c0-2.5-1.8-4-4-4.5"/></svg></span>
           <h3>Employee Benefits <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Group personal accident, group life, group medical, pension trustees liability</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z"/></svg></span>
           <h3>Specialist Risks <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Office combined, contaminated products, golfers</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PHILOSOPHY BAND ============ -->
+  <section class="section philosophy-band">
+    <div class="container">
+      <span class="tag-pill tag-pill--invert">Our Philosophy</span>
+      <h2>Independent advice that puts institutions first<span class="philosophy-rule" aria-hidden="true"></span></h2>
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B4E717" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>
+          <h3>Deep market expertise</h3>
+          <p>Two decades placing risk across Kenya&rsquo;s public and private sectors, with the market relationships that come from it.</p>
+        </div>
+        <div class="philosophy-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B4E717" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3>Independent advocacy</h3>
+          <p>We are appointed by you, not the insurer, so the claim and the renewal are argued from your side of the table.</p>
+        </div>
+        <div class="philosophy-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B4E717" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M4 20h16"/></svg>
+          <h3>Evidence-based placement</h3>
+          <p>Terms, exclusions and pricing are compared across the market before a recommendation is made.</p>
+        </div>
+        <div class="philosophy-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B4E717" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v5h5"/><path d="M20 20v-5h-5"/><path d="M5 15a8 8 0 0014-5M19 9a8 8 0 00-14 5"/></svg>
+          <h3>Renewal discipline</h3>
+          <p>Cover is re-tested every year against how your organisation has actually changed.</p>
         </div>
       </div>
     </div>
@@ -837,18 +1122,22 @@
       </div>
       <div class="lines-grid" style="border-top:1px solid var(--n-300); border-left:1px solid var(--n-300);">
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l1.5-5A2 2 0 017.4 9.5h9.2A2 2 0 0118.5 11L20 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><circle cx="7.5" cy="20" r="1.3"/><circle cx="16.5" cy="20" r="1.3"/></svg></span>
           <h3>Motor <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Private and commercial vehicle cover, comprehensive and third-party</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span>
           <h3>Medical <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Individual and family health cover</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg></span>
           <h3>Home <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Domestic package cover for your home and contents</p>
         </div>
         <div class="line-cell" tabindex="0">
+          <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13l19-7-7 19-2-8-8-4z"/></svg></span>
           <h3>Travel &amp; Personal Accident <span class="arrow" aria-hidden="true">&rarr;</span></h3>
           <p>Travel cover and personal accident protection</p>
         </div>
@@ -931,8 +1220,39 @@
     </div>
   </section>
 
+  <!-- ============ HIGHLIGHT / TRACK RECORD ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="highlight-grid">
+        <div class="highlight-quote">
+          <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+          <p class="quote-text">Client testimonial to be supplied by Miran Insurance Brokers Ltd.</p>
+          <div class="quote-attribution">
+            <span class="quote-avatar" aria-hidden="true">?</span>
+            <div>
+              <strong>[Organisation name]</strong><br>
+              <span>[Contact name, title] &mdash; [TBC]</span>
+            </div>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <span class="tag-pill tag-pill--dark">Track record</span>
+          <span class="icon-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg>
+          </span>
+          <h3>Placing and managing risk for Kenya&rsquo;s institutions since 2003</h3>
+          <div class="highlight-stat">
+            <span class="stat-figure">37</span>
+            <span>insurer partners across every placement we make</span>
+          </div>
+          <a href="#contact" class="btn btn-primary" style="background:var(--primary); color:var(--white); align-self:flex-start;">Talk to a broker</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ ISO / CREDIBILITY ============ -->
-  <section class="section" style="background:var(--n-50); border-top:1px solid var(--n-200); border-bottom:1px solid var(--n-200);">
+  <section class="section" id="quality" style="background:var(--n-50); border-top:1px solid var(--n-200); border-bottom:1px solid var(--n-200);">
     <div class="container">
       <div class="iso-layout">
         <div>
