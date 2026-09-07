@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 160" width="280" height="160" role="img" aria-label="Lipa na M-Pesa Paybill 904050 graphic (placeholder)">
+  <rect x="0.5" y="0.5" width="279" height="159" rx="10" fill="#FFFFFF0D" stroke="#FFFFFF40" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="140" y="62" text-anchor="middle" font-family="'Work Sans', Arial, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" opacity="0.85" letter-spacing="1">LIPA NA M-PESA</text>
+  <text x="140" y="90" text-anchor="middle" font-family="'Poppins', Arial, sans-serif" font-size="15" font-weight="700" fill="#B4E717">PAYBILL</text>
+  <text x="140" y="118" text-anchor="middle" font-family="'Poppins', Arial, sans-serif" font-size="22" font-weight="700" fill="#FFFFFF" letter-spacing="2">904050</text>
+</svg>

@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miran Insurance Brokers Ltd — Corporate &amp; Commercial Risk Placement</title>
+<meta name="description" content="Miran Insurance Brokers has placed and managed commercial risk programmes for Kenya's ports, airports, revenue authority and universities since 2003. ISO 9001:2015 certified.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ---------------------------------------------------------
+     DESIGN TOKENS — keep all brand values here
+  --------------------------------------------------------- */
+  :root{
+    --primary:      #1C4B42;
+    --primary-700:  #163A33;
+    --primary-900:  #0F2621;
+    --accent:       #B4E717;
+    --ink:          rgba(0,0,0,0.8);
+    --ink-soft:     rgba(0,0,0,0.6);
+    --white:        #FFFFFF;
+
+    /* neutrals derived with a slight green bias — never pure grey */
+    --n-50:  #F6F8F5;
+    --n-100: #EEF2EC;
+    --n-200: #DEE6DB;
+    --n-300: #C3CFC0;
+    --n-500: #7C8A79;
+    --n-700: #4A554A;
+
+    --radius-btn:   100px;
+    --radius-input: 9px;
+    --max-width:    1280px;
+
+    --font-heading: 'Poppins', Arial, sans-serif;
+    --font-body:    'Work Sans', Arial, sans-serif;
+
+    --gap-section: clamp(3.5rem, 6vw, 6.5rem);
+    --gap-inner:   clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  /* ---------------------------------------------------------
+     RESET
+  --------------------------------------------------------- */
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *,*::before,*::after{
+      animation-duration:0.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.01ms !important;
+      scroll-behavior:auto !important;
+    }
+  }
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  h1,h2,h3,h4{
+    font-family:var(--font-heading);
+    color:var(--primary);
+    margin:0 0 0.6em;
+    line-height:1.18;
+    font-weight:600;
+  }
+  p{ margin:0 0 1em; }
+  ul{ margin:0; padding:0; list-style:none; }
+  button{ font-family:inherit; }
+
+  :focus-visible{
+    outline:3px solid var(--primary);
+    outline-offset:2px;
+  }
+  .dark :focus-visible, .footer :focus-visible{
+    outline-color:var(--accent);
+  }
+
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  .skip-link{
+    position:absolute; left:1rem; top:-3rem;
+    background:var(--primary); color:var(--white);
+    padding:0.75rem 1.25rem; border-radius:var(--radius-input);
+    z-index:1000; transition:top .15s ease;
+    text-decoration:none; font-weight:600;
+  }
+  .skip-link:focus{ top:1rem; }
+
+  /* ---------------------------------------------------------
+     LAYOUT HELPERS
+  --------------------------------------------------------- */
+  .container{
+    max-width:var(--max-width);
+    margin-inline:auto;
+    padding-inline:clamp(1.25rem, 4vw, 3rem);
+  }
+  .section{ padding-block:var(--gap-section); }
+  .section-tight{ padding-block:clamp(2.5rem,4vw,4rem); }
+  .eyebrow{
+    display:inline-block;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--primary);
+    margin-bottom:0.9rem;
+    position:relative;
+    padding-left:1.15rem;
+  }
+  .eyebrow::before{
+    content:"";
+    position:absolute; left:0; top:50%;
+    transform:translateY(-50%);
+    width:0.6rem; height:2px;
+    background:var(--accent);
+  }
+  .dark .eyebrow, .on-dark .eyebrow{ color:var(--accent); }
+  .section-head{
+    max-width:52rem;
+    margin-bottom:clamp(2rem,4vw,3.25rem);
+  }
+  .section-head p{ color:var(--ink-soft); font-size:1.05rem; max-width:42rem; }
+
+  .rule{ border:0; border-top:1px solid var(--n-300); margin:0; }
+
+  /* ---------------------------------------------------------
+     BUTTONS
+  --------------------------------------------------------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.5rem;
+    padding:0.95rem 1.85rem;
+    border-radius:var(--radius-btn);
+    font-family:var(--font-heading);
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:background-color .18s ease, color .18s ease, border-color .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{ background:var(--primary); color:var(--white); }
+  .btn-primary:hover, .btn-primary:focus-visible{ background:var(--accent); color:var(--primary); }
+
+  .btn-outline{ background:transparent; border-color:var(--primary); color:var(--primary); }
+  .btn-outline:hover, .btn-outline:focus-visible{ background:var(--accent); border-color:var(--accent); color:var(--primary); }
+
+  .btn-outline-invert{ background:transparent; border-color:rgba(255,255,255,0.65); color:var(--white); }
+  .btn-outline-invert:hover, .btn-outline-invert:focus-visible{ background:var(--accent); border-color:var(--accent); color:var(--primary); }
+
+  .btn-block{ width:100%; }
+
+  /* ---------------------------------------------------------
+     UTILITY BAR
+  --------------------------------------------------------- */
+  .utility-bar{
+    background:var(--primary-900);
+    color:rgba(255,255,255,0.85);
+    font-size:0.8rem;
+  }
+  .utility-bar .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    padding-block:0.55rem;
+    flex-wrap:wrap;
+  }
+  .utility-left{ display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; }
+  .utility-left a{ text-decoration:none; }
+  .utility-left a:hover{ color:var(--accent); }
+  .utility-sep{ opacity:0.4; }
+  .utility-licence{ opacity:0.75; }
+
+  /* ---------------------------------------------------------
+     HEADER
+  --------------------------------------------------------- */
+  .site-header{
+    position:sticky; top:0; z-index:500;
+    background:var(--white);
+    border-bottom:1px solid var(--n-200);
+  }
+  .site-header .container{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-block:0.85rem; gap:1.5rem;
+  }
+  .brand{ display:flex; align-items:center; }
+  .brand img{ height:44px; width:auto; }
+  .main-nav{ display:flex; align-items:center; gap:2.25rem; }
+  .main-nav a{
+    text-decoration:none;
+    font-weight:500;
+    font-size:0.95rem;
+    color:var(--ink);
+    position:relative;
+    padding-block:0.25rem;
+  }
+  .main-nav a::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:-2px;
+    height:2px; background:var(--accent);
+    transform:scaleX(0); transform-origin:left;
+    transition:transform .18s ease;
+  }
+  .main-nav a:hover::after, .main-nav a:focus-visible::after{ transform:scaleX(1); }
+  .header-actions{ display:flex; align-items:center; gap:1.5rem; }
+  .nav-toggle{
+    display:none;
+    background:transparent; border:1px solid var(--n-300);
+    border-radius:var(--radius-input);
+    width:44px; height:44px;
+    align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+    content:""; display:block; width:20px; height:2px; background:var(--primary);
+    position:relative; transition:transform .2s ease, opacity .2s ease;
+  }
+  .nav-toggle span::before{ position:absolute; top:-6px; }
+  .nav-toggle span::after{ position:absolute; top:6px; }
+  .nav-toggle[aria-expanded="true"] span{ background:transparent; }
+  .nav-toggle[aria-expanded="true"] span::before{ transform:translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span::after{ transform:translateY(-6px) rotate(-45deg); }
+
+  .nav-drawer-backdrop{ display:none; }
+
+  @media (max-width: 900px){
+    .main-nav{
+      position:fixed; inset:0 0 0 auto;
+      width:min(320px, 84vw); height:100vh;
+      background:var(--white);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:5.5rem 2rem 2rem;
+      gap:1.75rem;
+      transform:translateX(100%);
+      transition:transform .25s ease;
+      box-shadow:-8px 0 24px rgba(15,38,33,0.12);
+      overflow-y:auto;
+    }
+    .main-nav.is-open{ transform:translateX(0); }
+    .main-nav a{ font-size:1.1rem; }
+    .header-actions .btn-primary{ display:none; }
+    .main-nav .drawer-cta{ display:inline-flex; margin-top:0.5rem; }
+    .nav-toggle{ display:inline-flex; }
+    .nav-drawer-backdrop{
+      display:block;
+      position:fixed; inset:0; background:rgba(15,38,33,0.45);
+      opacity:0; pointer-events:none; transition:opacity .2s ease;
+      z-index:499;
+    }
+    .nav-drawer-backdrop.is-open{ opacity:1; pointer-events:auto; }
+  }
+  .drawer-cta{ display:none; }
+
+  /* ---------------------------------------------------------
+     HERO
+  --------------------------------------------------------- */
+  .hero{
+    background:var(--primary);
+    color:var(--white);
+    padding-block:clamp(4rem,8vw,7rem);
+  }
+  .hero-inner{ max-width:44rem; }
+  .hero .eyebrow{ color:var(--accent); }
+  .hero h1{
+    color:var(--white);
+    font-size:clamp(2.1rem, 4.4vw, 3.4rem);
+    font-weight:700;
+    margin-bottom:0.75em;
+  }
+  .hero p{
+    color:rgba(255,255,255,0.85);
+    font-size:1.15rem;
+    max-width:38rem;
+  }
+  .hero-ctas{ display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem; }
+
+  /* ---------------------------------------------------------
+     LOGO WALLS (client + insurer)
+  --------------------------------------------------------- */
+  .logo-wall{ padding-block:var(--gap-section); }
+  .logo-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:1px;
+    background:var(--n-200);
+    border:1px solid var(--n-200);
+  }
+  .logo-cell{
+    background:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    padding:1.1rem;
+    aspect-ratio:16/9;
+  }
+  .logo-cell img{
+    max-height:44px;
+    width:auto;
+    filter:grayscale(1);
+    opacity:0.72;
+    transition:filter .2s ease, opacity .2s ease;
+  }
+  .logo-cell:hover img, .logo-cell:focus-within img{
+    filter:grayscale(0);
+    opacity:1;
+  }
+  @media (max-width: 900px){
+    .logo-grid{ grid-template-columns:repeat(3, 1fr); }
+  }
+  @media (max-width: 520px){
+    .logo-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  /* insurer wall has 16 logos — use a column count that divides evenly */
+  .logo-grid--4{ grid-template-columns:repeat(4, 1fr); }
+  @media (max-width: 900px){
+    .logo-grid--4{ grid-template-columns:repeat(4, 1fr); }
+  }
+  @media (max-width: 520px){
+    .logo-grid--4{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  /* ---------------------------------------------------------
+     STAT BAND
+  --------------------------------------------------------- */
+  .stat-band{
+    background:var(--n-50);
+    border-top:1px solid var(--n-200);
+    border-bottom:1px solid var(--n-200);
+  }
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+  }
+  .stat-item{
+    padding:clamp(1.75rem,3vw,2.75rem) 1.5rem;
+    text-align:center;
+    border-left:1px solid var(--n-200);
+  }
+  .stat-item:first-child{ border-left:none; }
+  .stat-figure{
+    font-family:var(--font-heading);
+    font-weight:700;
+    font-size:clamp(1.6rem,3vw,2.35rem);
+    color:var(--primary);
+    font-variant-numeric:tabular-nums lining-nums;
+    display:block;
+  }
+  .stat-label{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    margin-top:0.35rem;
+  }
+  @media (max-width: 780px){
+    .stat-grid{ grid-template-columns:repeat(2, 1fr); }
+    .stat-item:nth-child(3){ border-left:none; }
+    .stat-item:nth-child(1), .stat-item:nth-child(2){ border-bottom:1px solid var(--n-200); }
+  }
+
+  /* ---------------------------------------------------------
+     TWO LANES
+  --------------------------------------------------------- */
+  .lanes{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:1.25rem;
+  }
+  .lane{
+    padding:clamp(2rem,3.5vw,3rem);
+    display:flex; flex-direction:column; justify-content:space-between;
+    min-height:280px;
+  }
+  .lane-business{
+    background:var(--primary);
+    color:var(--white);
+  }
+  .lane-business h3{ color:var(--white); font-size:1.6rem; }
+  .lane-business p{ color:rgba(255,255,255,0.82); }
+  .lane-personal{
+    background:var(--n-50);
+    border:1px solid var(--n-200);
+  }
+  .lane-personal h3{ font-size:1.3rem; }
+  .lane-personal p{ color:var(--ink-soft); }
+  .lane .eyebrow{ margin-bottom:0.6rem; }
+  @media (max-width: 780px){
+    .lanes{ grid-template-columns:1fr; }
+  }
+
+  /* ---------------------------------------------------------
+     COMMERCIAL LINES GRID
+  --------------------------------------------------------- */
+  .lines-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    border-top:1px solid var(--n-300);
+    border-left:1px solid var(--n-300);
+  }
+  .line-cell{
+    border-right:1px solid var(--n-300);
+    border-bottom:1px solid var(--n-300);
+    padding:1.85rem 1.6rem;
+    position:relative;
+    border-top:2px solid transparent;
+    transition:border-top-color .18s ease;
+  }
+  .line-cell:hover, .line-cell:focus-within{ border-top-color:var(--accent); }
+  .line-cell h3{
+    font-size:1.05rem;
+    margin-bottom:0.5rem;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:0.5rem;
+  }
+  .line-cell .arrow{
+    color:var(--n-500);
+    transition:transform .18s ease, color .18s ease;
+    font-size:1rem;
+  }
+  .line-cell:hover .arrow, .line-cell:focus-within .arrow{
+    color:var(--accent-ink, var(--primary));
+    transform:translateX(3px);
+  }
+  .line-cell p{ font-size:0.92rem; color:var(--ink-soft); margin:0; }
+  @media (max-width: 980px){
+    .lines-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width: 560px){
+    .lines-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------------------------------------------------------
+     PROCESS
+  --------------------------------------------------------- */
+  .process-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+  }
+  .process-step{
+    padding-right:1.75rem;
+    border-left:1px solid var(--n-200);
+    padding-left:1.75rem;
+  }
+  .process-step:first-child{ border-left:none; padding-left:0; }
+  .process-num{
+    font-family:var(--font-heading);
+    font-weight:700;
+    font-size:1.6rem;
+    color:var(--n-300);
+    display:block;
+    margin-bottom:0.75rem;
+  }
+  .process-step h3{ font-size:1.1rem; }
+  .process-step p{ font-size:0.92rem; color:var(--ink-soft); }
+  .process-note{
+    margin-top:2.5rem;
+    padding-top:2rem;
+    border-top:1px solid var(--n-200);
+    max-width:46rem;
+    font-size:1.02rem;
+    color:var(--ink-soft);
+  }
+  @media (max-width: 900px){
+    .process-grid{ grid-template-columns:repeat(2, 1fr); gap:2rem 1.75rem; }
+    .process-step{ border-left:none; padding-left:0; }
+  }
+  @media (max-width: 560px){
+    .process-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------------------------------------------------------
+     CLAIMS BAND
+  --------------------------------------------------------- */
+  .claims-band{
+    background:var(--primary-700);
+    color:var(--white);
+  }
+  .claims-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:2rem;
+    flex-wrap:wrap;
+  }
+  .claims-text{ max-width:36rem; }
+  .claims-text h2{ color:var(--white); font-size:clamp(1.5rem,3vw,2rem); }
+  .claims-text p{ color:rgba(255,255,255,0.82); margin:0; }
+  .claims-ctas{ display:flex; gap:1rem; flex-wrap:wrap; }
+
+  /* ---------------------------------------------------------
+     ISO / CREDIBILITY
+  --------------------------------------------------------- */
+  .iso-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(2rem,4vw,4rem);
+    align-items:start;
+  }
+  .iso-points{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.5rem 1.75rem;
+  }
+  .iso-point{
+    display:flex; gap:0.75rem; align-items:flex-start;
+    font-weight:500;
+    font-size:0.98rem;
+  }
+  .iso-point::before{
+    content:"";
+    flex:none;
+    width:8px; height:8px; border-radius:50%;
+    background:var(--accent);
+    margin-top:0.5rem;
+  }
+  @media (max-width: 860px){
+    .iso-layout{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 500px){
+    .iso-points{ grid-template-columns:1fr; }
+  }
+
+  /* ---------------------------------------------------------
+     QUOTE / FORM
+  --------------------------------------------------------- */
+  .quote-section{ background:var(--n-50); }
+  .quote-layout{
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:clamp(2rem,4vw,4rem);
+    align-items:start;
+  }
+  .quote-intro h2{ font-size:clamp(1.7rem,3vw,2.3rem); }
+  .quote-intro p{ color:var(--ink-soft); max-width:26rem; }
+  .quote-intro .contact-line{
+    margin-top:2rem;
+    padding-top:1.5rem;
+    border-top:1px solid var(--n-300);
+  }
+  .quote-intro .contact-line a{ text-decoration:none; font-weight:600; color:var(--primary); }
+  .quote-intro .contact-line a:hover{ color:var(--primary-700); text-decoration:underline; }
+
+  .quote-form{
+    background:var(--white);
+    border:1px solid var(--n-200);
+    padding:clamp(1.75rem,3vw,2.5rem);
+  }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+  .field{ margin-bottom:1.25rem; }
+  .field label{
+    display:block; font-weight:600; font-size:0.88rem;
+    margin-bottom:0.4rem; color:var(--primary);
+  }
+  .field input, .field select, .field textarea{
+    width:100%;
+    font-family:var(--font-body);
+    font-size:0.98rem;
+    padding:0.8rem 1rem;
+    border:1px solid var(--n-300);
+    border-radius:var(--radius-input);
+    background:var(--white);
+    color:var(--ink);
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(180,231,23,0.4);
+  }
+  .field textarea{ resize:vertical; min-height:110px; }
+  .form-confirm{
+    display:none;
+    background:var(--n-100);
+    border:1px solid var(--n-300);
+    border-left:4px solid var(--accent);
+    padding:1.25rem 1.5rem;
+    margin-top:1.25rem;
+    font-weight:500;
+  }
+  .form-confirm.is-visible{ display:block; }
+  @media (max-width: 860px){
+    .quote-layout{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 560px){
+    .form-row{ grid-template-columns:1fr; }
+  }
+
+  /* ---------------------------------------------------------
+     FOOTER
+  --------------------------------------------------------- */
+  .site-footer{
+    background:var(--primary-900);
+    color:rgba(255,255,255,0.78);
+  }
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr 1fr;
+    gap:2.5rem;
+    padding-block:clamp(3rem,5vw,4.5rem);
+  }
+  .footer-brand img{ height:40px; margin-bottom:1.25rem; }
+  .footer-brand address{ font-style:normal; font-size:0.92rem; line-height:1.7; }
+  .footer-col h4{
+    color:var(--white);
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:1rem;
+    font-family:var(--font-body);
+    font-weight:600;
+  }
+  .footer-col ul li{ margin-bottom:0.6rem; font-size:0.92rem; }
+  .footer-col a{ text-decoration:none; }
+  .footer-col a:hover{ color:var(--accent); }
+  .footer-paybill{ margin-top:1.5rem; }
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.15);
+    padding-block:1.5rem;
+    display:flex; justify-content:space-between; align-items:center;
+    gap:1rem; flex-wrap:wrap;
+    font-size:0.82rem;
+    color:rgba(255,255,255,0.6);
+  }
+  @media (max-width: 980px){
+    .footer-top{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 560px){
+    .footer-top{ grid-template-columns:1fr; }
+  }
+
+  /* generic responsive spacing tweak for section header on mobile */
+  @media (max-width: 560px){
+    .section{ padding-block:clamp(2.75rem,10vw,4rem); }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ UTILITY BAR ============ -->
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-left">
+      <a href="tel:+254208146932">+254 20 814 69 32</a>
+      <span class="utility-sep">·</span>
+      <a href="mailto:info@miranbrokers.co.ke">info@miranbrokers.co.ke</a>
+      <span class="utility-sep">·</span>
+      <span>Lipa na M-Pesa <strong>904050</strong></span>
+    </div>
+    <div class="utility-licence">IRA Licence No. [TBC]</div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#main" aria-label="Miran Insurance Brokers Ltd — home">
+      <img src="assets/company-logo.svg" alt="Miran Insurance Brokers Ltd" width="240" height="64">
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="#personal">Personal</a>
+      <a href="#business">Business</a>
+      <a href="#about">About</a>
+      <a href="#resources">Resources</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn-primary drawer-cta">Request a Quote</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#contact" class="btn btn-primary">Request a Quote</a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="nav-drawer-backdrop" id="nav-backdrop"></div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow">Corporate &amp; Commercial Risk Brokers</p>
+      <h1>Kenya&rsquo;s institutions trust us with their risk.</h1>
+      <p>Miran Insurance Brokers has placed and managed commercial risk programmes for Kenya&rsquo;s ports, airports, revenue authority and universities since 2003. ISO 9001:2015 certified.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Request a Quote</a>
+        <a href="tel:+254208146932" class="btn btn-outline-invert">Talk to a broker</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLIENT LOGO WALL ============ -->
+  <section class="logo-wall" aria-labelledby="clients-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Trusted by</p>
+        <h2 id="clients-heading">Institutions and enterprises we place cover for</h2>
+      </div>
+      <div class="logo-grid">
+        <div class="logo-cell"><img src="assets/clients/Kenya-Ports-Authority.svg" alt="Kenya Ports Authority" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Kenya-Airports-Authority.svg" alt="Kenya Airports Authority" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/kenya-revenue-authority.svg" alt="Kenya Revenue Authority" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Kenya-Civil-Aviation-Authority.svg" alt="Kenya Civil Aviation Authority" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/National-Social-Security-Fund.svg" alt="National Social Security Fund" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Communications-Authority-of-Kenya.svg" alt="Communications Authority of Kenya" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Geothermal-Development-Co-Ltd.svg" alt="Geothermal Development Co. Ltd" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Agriculture-Fisheries-and-Food-Authority-AFFA.svg" alt="Agriculture, Fisheries and Food Authority (AFFA)" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Horticultural-Crop-Development-Authority.svg" alt="Horticultural Crop Development Authority" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Kenya-Industrial-Research-Development-Institute.svg" alt="Kenya Industrial Research and Development Institute" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/National-Aids-Control-Council.svg" alt="National Aids Control Council" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Postal-Corporation-of-Kenya.svg" alt="Postal Corporation of Kenya" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Maseno-University.svg" alt="Maseno University" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Kisii-University.svg" alt="Kisii University" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Jaramogi-Oginga-Odinga-University-of-Science-Technology.svg" alt="Jaramogi Oginga Odinga University of Science and Technology" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Delamere-Estates.svg" alt="Delamere Estates" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Soysambu-Conservancy.svg" alt="Soysambu Conservancy" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/clients/Sony-Sugar-Co-Ltd.svg" alt="Sony Sugar Co. Ltd" width="160" height="90"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STAT BAND ============ -->
+  <section class="stat-band" id="about">
+    <div class="container">
+      <div class="stat-grid">
+        <div class="stat-item">
+          <span class="stat-figure">2003</span>
+          <span class="stat-label">Established</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-figure">32</span>
+          <span class="stat-label">Insurance products</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-figure">37</span>
+          <span class="stat-label">Insurer partners</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-figure">ISO 9001:2015</span>
+          <span class="stat-label">Certified</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TWO LANES ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="lanes">
+        <div class="lane lane-business">
+          <div>
+            <p class="eyebrow">For institutions</p>
+            <h3>Business &amp; Corporate</h3>
+            <p>Risk programmes for institutions, parastatals and commercial operators.</p>
+          </div>
+          <a href="#business" class="btn btn-outline-invert">View commercial lines</a>
+        </div>
+        <div class="lane lane-personal">
+          <div>
+            <p class="eyebrow">For individuals</p>
+            <h3>Personal</h3>
+            <p>Motor, medical, home, travel and personal accident cover for individuals and families.</p>
+          </div>
+          <a href="#personal" class="btn btn-outline">View personal cover</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMMERCIAL LINES GRID ============ -->
+  <section class="section" id="business" style="padding-top:0;">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Business &amp; Corporate</p>
+        <h2>Eight lines of commercial cover</h2>
+      </div>
+      <div class="lines-grid">
+        <div class="line-cell" tabindex="0">
+          <h3>Property &amp; Assets <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Fire &amp; perils, burglary, all risks, industrial all risks, plate glass, stock floater, domestic package</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Marine &amp; Transit <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Marine cargo (ICC A/B/C), goods in transit</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Engineering &amp; Equipment <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Machinery, computer &amp; electronic, Microsure</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Business Interruption <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Consequential loss — fire &amp; perils, and engineering</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Liability <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Public &amp; products, employers, professional indemnity, directors &amp; officers</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Crime &amp; Financial Lines <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Fidelity guarantee, bankers blanket bond, money, kidnap &amp; ransom</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Employee Benefits <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Group personal accident, group life, group medical, pension trustees liability</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Specialist Risks <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Office combined, contaminated products, golfers</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PERSONAL LANE DETAIL ============ -->
+  <section class="section" id="personal" style="background:var(--n-50); border-top:1px solid var(--n-200); border-bottom:1px solid var(--n-200);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Personal</p>
+        <h2>Cover for individuals and families</h2>
+        <p>Straightforward personal lines, arranged with the same market access we use for our corporate clients.</p>
+      </div>
+      <div class="lines-grid" style="border-top:1px solid var(--n-300); border-left:1px solid var(--n-300);">
+        <div class="line-cell" tabindex="0">
+          <h3>Motor <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Private and commercial vehicle cover, comprehensive and third-party</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Medical <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Individual and family health cover</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Home <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Domestic package cover for your home and contents</p>
+        </div>
+        <div class="line-cell" tabindex="0">
+          <h3>Travel &amp; Personal Accident <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+          <p>Travel cover and personal accident protection</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Our process</p>
+        <h2>We act for you, not the insurer.</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <span class="process-num">01</span>
+          <h3>Risk assessment</h3>
+          <p>We identify your exposures and decide together what should be insured and what should be managed another way.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-num">02</span>
+          <h3>Market placement</h3>
+          <p>We know the terms, exclusions and pricing across the market and place your cover where it actually fits.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-num">03</span>
+          <h3>Claims advocacy</h3>
+          <p>We run the claim and deal with the insurer on your behalf. This is where a broker earns their fee.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-num">04</span>
+          <h3>Renewal review</h3>
+          <p>Cover is re-tested against how your business has changed, not rolled over.</p>
+        </div>
+      </div>
+      <p class="process-note">We save you time, money and worry. Buying on price alone backfires at claim stage, when you discover you were not adequately covered — or not covered at all.</p>
+    </div>
+  </section>
+
+  <!-- ============ CLAIMS BAND ============ -->
+  <section class="claims-band section-tight" id="resources">
+    <div class="container claims-inner">
+      <div class="claims-text">
+        <h2>Need to make a claim?</h2>
+        <p>Download the right form for your insurer, or call our claims line and we will handle it with them directly.</p>
+      </div>
+      <div class="claims-ctas">
+        <a href="#" class="btn btn-primary" style="background:var(--accent); color:var(--primary);">Claim forms</a>
+        <a href="tel:+254208146932" class="btn btn-outline-invert">Call claims</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSURER PANEL ============ -->
+  <section class="logo-wall">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">We place with</p>
+        <h2>37 insurers. One broker working for you.</h2>
+      </div>
+      <div class="logo-grid logo-grid--4">
+        <div class="logo-cell"><img src="assets/insurers/AIG.svg" alt="AIG" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/APA-Insurance.svg" alt="APA Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Britam.svg" alt="Britam" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/CIC-General-Insurance.svg" alt="CIC General Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/GA-Insurance.svg" alt="GA Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Heritage-Insurance.svg" alt="Heritage Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/ICEA-LION-General-Insurance.svg" alt="ICEA LION General Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Jubilee-Insurance.svg" alt="Jubilee Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Madison-Insurance.svg" alt="Madison Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Old-Mutual-Life-Insurance.svg" alt="Old Mutual Life Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Sanlam-Insurance.svg" alt="Sanlam Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/UAP-Insurance.svg" alt="UAP Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Geminia-Insurance.svg" alt="Geminia Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Kenya-Orient-Insurance.svg" alt="Kenya Orient Insurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Pioneer-Life-Assurance.svg" alt="Pioneer Life Assurance" width="160" height="90"></div>
+        <div class="logo-cell"><img src="assets/insurers/Cannon-Assurance-Company-Limited.svg" alt="Cannon Assurance Company Limited" width="160" height="90"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ISO / CREDIBILITY ============ -->
+  <section class="section" style="background:var(--n-50); border-top:1px solid var(--n-200); border-bottom:1px solid var(--n-200);">
+    <div class="container">
+      <div class="iso-layout">
+        <div>
+          <p class="eyebrow">Quality management</p>
+          <h2>ISO 9001:2015 certified.</h2>
+          <p style="color:var(--ink-soft);">An internationally recognised standard that ensures our services meet client needs through an effective quality management system — the result of a full evaluation covering system development, documentation review, pre-audit and initial assessment.</p>
+        </div>
+        <div class="iso-points">
+          <div class="iso-point">Customer requirements met</div>
+          <div class="iso-point">Consistent operations</div>
+          <div class="iso-point">Continual improvement</div>
+          <div class="iso-point">International quality recognition</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTE CTA + FORM ============ -->
+  <section class="section quote-section" id="contact">
+    <div class="container">
+      <div class="quote-layout">
+        <div class="quote-intro">
+          <p class="eyebrow">Get in touch</p>
+          <h2>Protect what matters most.</h2>
+          <p>Tell us about your organisation and the cover you need. A broker will get back to you directly.</p>
+          <div class="contact-line">
+            <p style="margin-bottom:0.35rem;">Prefer to call?</p>
+            <a href="tel:+254208146932">+254 20 814 69 32</a>
+          </div>
+        </div>
+
+        <form class="quote-form" id="quote-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="q-name">Name</label>
+              <input type="text" id="q-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="q-email">Email</label>
+              <input type="email" id="q-email" name="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="q-phone">Phone</label>
+              <input type="tel" id="q-phone" name="phone" autocomplete="tel" required>
+            </div>
+            <div class="field">
+              <label for="q-org">Organisation</label>
+              <input type="text" id="q-org" name="organisation" autocomplete="organization">
+            </div>
+          </div>
+          <div class="field">
+            <label for="q-type">Type of cover</label>
+            <select id="q-type" name="type" required>
+              <option value="" disabled selected>Select cover type</option>
+              <option>Business &amp; Corporate</option>
+              <option>Employee Benefits</option>
+              <option>Motor</option>
+              <option>Medical</option>
+              <option>Life &amp; Personal Accident</option>
+              <option>Marine &amp; Transit</option>
+              <option>Travel</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-message">Message</label>
+            <textarea id="q-message" name="message" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Request a Quote</button>
+          <div class="form-confirm" id="form-confirm" role="status">
+            Thank you — this is a design concept, so the form does not submit yet. In the live site this will route to Miran&rsquo;s broking team.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div class="footer-col footer-brand">
+      <img src="assets/footer-logo.svg" alt="Miran Insurance Brokers Ltd" width="240" height="64">
+      <address>
+        Miran Insurance Brokers Ltd<br>
+        Mezzanine 1, The Mirage Building,<br>
+        off Waiyaki Way, Westlands<br>
+        P.O. Box 43441&ndash;00100, Nairobi, Kenya
+        <br><br>
+        T <a href="tel:+254208146932">+254 20 814 69 32</a><br>
+        M <a href="tel:+254771362997">+254 771 362 997</a><br>
+        <a href="mailto:info@miranbrokers.co.ke">info@miranbrokers.co.ke</a>
+      </address>
+      <div class="footer-paybill">
+        <img src="assets/mpesa-paybill.svg" alt="Lipa na M-Pesa Paybill 904050" width="280" height="160">
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Branches</h4>
+      <ul>
+        <li>Kisumu &mdash; Tuff Foam Mall</li>
+        <li>Mombasa</li>
+        <li>Migori &mdash; Suna</li>
+      </ul>
+      <h4 style="margin-top:2rem;">Underwriting</h4>
+      <ul>
+        <li><a href="mailto:underwriting@miranbrokers.co.ke">underwriting@miranbrokers.co.ke</a></li>
+        <li><a href="tel:+254722708775">M +254 722 708 775</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Cover</h4>
+      <ul>
+        <li><a href="#business">Business &amp; Corporate</a></li>
+        <li><a href="#personal">Personal</a></li>
+        <li><a href="#resources">Claims</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Request a Quote</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>IRA Licence No. [TBC]</span>
+    <span>&copy; 2026 Miran Insurance Brokers Ltd. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('nav-toggle');
+  var nav = document.getElementById('main-nav');
+  var backdrop = document.getElementById('nav-backdrop');
+
+  function closeNav(){
+    nav.classList.remove('is-open');
+    backdrop.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  }
+  function openNav(){
+    nav.classList.add('is-open');
+    backdrop.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+  }
+  toggle.addEventListener('click', function(){
+    var isOpen = nav.classList.contains('is-open');
+    if (isOpen) { closeNav(); } else { openNav(); }
+  });
+  backdrop.addEventListener('click', closeNav);
+  nav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', closeNav);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeNav();
+  });
+
+  var form = document.getElementById('quote-form');
+  var confirm = document.getElementById('form-confirm');
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      confirm.classList.add('is-visible');
+      confirm.setAttribute('tabindex', '-1');
+      confirm.focus();
+    });
+  }
+})();
+</script>
+</body>
+</html>

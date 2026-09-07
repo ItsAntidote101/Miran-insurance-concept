@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 90" width="160" height="90" role="img" aria-label="Pioneer Life Assurance logo (placeholder)">
+  <rect x="0.5" y="0.5" width="159" height="89" rx="4" fill="#F3F5F2" stroke="#1C4B4229" stroke-width="1"/>
+  <text x="80" y="38.5" text-anchor="middle" font-family="'Work Sans', Arial, sans-serif" font-size="11" font-weight="600" fill="#1C4B42" opacity="0.55">
+    <tspan x="80" dy="0">Pioneer Life</tspan>
+    <tspan x="80" dy="13">Assurance</tspan>
+  </text>
+</svg>
