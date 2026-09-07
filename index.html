@@ -13,25 +13,26 @@
      DESIGN TOKENS — keep all brand values here
   --------------------------------------------------------- */
   :root{
-    --primary:      #1C4B42;
-    --primary-700:  #163A33;
-    --primary-900:  #0F2621;
-    --accent:       #B4E717;
+    --primary:      #1975BB;
+    --primary-700:  #145B92;
+    --primary-900:  #0E4067;
+    --accent:       #84888A;
     --ink:          rgba(0,0,0,0.8);
     --ink-soft:     rgba(0,0,0,0.6);
     --white:        #FFFFFF;
 
-    /* neutrals derived with a slight green bias — never pure grey */
-    --n-50:  #F6F8F5;
-    --n-100: #EEF2EC;
-    --n-200: #DEE6DB;
-    --n-300: #C3CFC0;
-    --n-500: #7C8A79;
-    --n-700: #4A554A;
+    /* neutrals derived with a slight blue bias — never pure grey */
+    --n-50:  #F5F7F9;
+    --n-100: #EAEEF2;
+    --n-200: #DBE2E8;
+    --n-300: #C0CCD6;
+    --n-500: #7C8996;
+    --n-700: #47535E;
 
     --radius-btn:   100px;
     --radius-input: 9px;
     --max-width:    1280px;
+    --header-h:     84px;
 
     --font-heading: 'Poppins', Arial, sans-serif;
     --font-body:    'Work Sans', Arial, sans-serif;
@@ -154,13 +155,13 @@
     white-space:nowrap;
   }
   .btn-primary{ background:var(--primary); color:var(--white); }
-  .btn-primary:hover, .btn-primary:focus-visible{ background:var(--accent); color:var(--primary); }
+  .btn-primary:hover, .btn-primary:focus-visible{ background:var(--accent); color:var(--white); }
 
   .btn-outline{ background:transparent; border-color:var(--primary); color:var(--primary); }
-  .btn-outline:hover, .btn-outline:focus-visible{ background:var(--accent); border-color:var(--accent); color:var(--primary); }
+  .btn-outline:hover, .btn-outline:focus-visible{ background:var(--accent); border-color:var(--accent); color:var(--white); }
 
   .btn-outline-invert{ background:transparent; border-color:rgba(255,255,255,0.65); color:var(--white); }
-  .btn-outline-invert:hover, .btn-outline-invert:focus-visible{ background:var(--accent); border-color:var(--accent); color:var(--primary); }
+  .btn-outline-invert:hover, .btn-outline-invert:focus-visible{ background:var(--accent); border-color:var(--accent); color:var(--white); }
 
   .btn-block{ width:100%; }
 
@@ -191,15 +192,24 @@
   --------------------------------------------------------- */
   .site-header{
     position:sticky; top:0; z-index:500;
+    background:transparent;
+    border-bottom:1px solid transparent;
+    transition:background-color .25s ease, border-color .25s ease;
+  }
+  .site-header.is-solid{
     background:var(--white);
     border-bottom:1px solid var(--n-200);
   }
   .site-header .container{
     display:flex; align-items:center; justify-content:space-between;
     padding-block:0.85rem; gap:1.5rem;
+    min-height:var(--header-h);
   }
   .brand{ display:flex; align-items:center; }
   .brand img{ height:44px; width:auto; }
+  .brand-logo--dark{ display:none; }
+  .site-header.is-solid .brand-logo--light{ display:none; }
+  .site-header.is-solid .brand-logo--dark{ display:block; }
   .main-nav{ display:flex; align-items:center; gap:2.25rem; }
   .main-nav a{
     text-decoration:none;
@@ -217,6 +227,9 @@
     transition:transform .18s ease;
   }
   .main-nav a:hover::after, .main-nav a:focus-visible::after{ transform:scaleX(1); }
+  @media (min-width:901px){
+    .site-header:not(.is-solid) .main-nav a{ color:var(--white); }
+  }
   .header-actions{ display:flex; align-items:center; gap:1.5rem; }
   .nav-toggle{
     display:none;
@@ -225,11 +238,16 @@
     width:44px; height:44px;
     align-items:center; justify-content:center;
     cursor:pointer;
+    transition:border-color .2s ease;
   }
+  .site-header:not(.is-solid) .nav-toggle{ border-color:rgba(255,255,255,0.5); }
   .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
     content:""; display:block; width:20px; height:2px; background:var(--primary);
-    position:relative; transition:transform .2s ease, opacity .2s ease;
+    position:relative; transition:transform .2s ease, opacity .2s ease, background-color .2s ease;
   }
+  .site-header:not(.is-solid) .nav-toggle span,
+  .site-header:not(.is-solid) .nav-toggle span::before,
+  .site-header:not(.is-solid) .nav-toggle span::after{ background:var(--white); }
   .nav-toggle span::before{ position:absolute; top:-6px; }
   .nav-toggle span::after{ position:absolute; top:6px; }
   .nav-toggle[aria-expanded="true"] span{ background:transparent; }
@@ -249,7 +267,7 @@
       gap:1.75rem;
       transform:translateX(100%);
       transition:transform .25s ease;
-      box-shadow:-8px 0 24px rgba(15,38,33,0.12);
+      box-shadow:-8px 0 24px rgba(14,64,103,0.12);
       overflow-y:auto;
     }
     .main-nav.is-open{ transform:translateX(0); }
@@ -259,7 +277,7 @@
     .nav-toggle{ display:inline-flex; }
     .nav-drawer-backdrop{
       display:block;
-      position:fixed; inset:0; background:rgba(15,38,33,0.45);
+      position:fixed; inset:0; background:rgba(14,64,103,0.45);
       opacity:0; pointer-events:none; transition:opacity .2s ease;
       z-index:499;
     }
@@ -268,27 +286,80 @@
   .drawer-cta{ display:none; }
 
   /* ---------------------------------------------------------
-     HERO
+     HERO — full-bleed photo, overlaid nav, bottom tag strip
   --------------------------------------------------------- */
   .hero{
-    background:var(--primary);
+    position:relative;
+    margin-top:calc(-1 * var(--header-h));
+    padding-top:calc(var(--header-h) + clamp(3rem,9vw,6rem));
+    padding-bottom:clamp(2rem,4vw,3rem);
+    min-height:640px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    gap:clamp(2rem,5vw,3.5rem);
     color:var(--white);
-    padding-block:clamp(4rem,8vw,7rem);
+    background:
+      linear-gradient(100deg, rgba(14,64,103,0.88) 0%, rgba(14,64,103,0.5) 48%, rgba(14,64,103,0.18) 100%),
+      linear-gradient(0deg, rgba(14,64,103,0.8) 0%, rgba(14,64,103,0) 38%),
+      url('assets/hero-photo.jpg') center/cover no-repeat;
   }
-  .hero-inner{ max-width:44rem; }
-  .hero .eyebrow{ color:var(--accent); }
+  .hero-inner{ max-width:42rem; }
   .hero h1{
     color:var(--white);
     font-size:clamp(2.1rem, 4.4vw, 3.4rem);
     font-weight:700;
-    margin-bottom:0.75em;
+    margin-bottom:0.6em;
+  }
+  .hero-rule{
+    display:inline-block;
+    vertical-align:middle;
+    width:clamp(2.5rem,7vw,6rem);
+    height:2px;
+    background:var(--accent);
+    margin-left:0.9rem;
   }
   .hero p{
     color:rgba(255,255,255,0.85);
-    font-size:1.15rem;
-    max-width:38rem;
+    font-size:1.1rem;
+    max-width:34rem;
   }
-  .hero-ctas{ display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem; }
+  .hero-ctas{ display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-top:1.75rem; }
+  .icon-btn--accent{ background:var(--white); color:var(--primary); }
+  .icon-btn--accent:hover, .icon-btn--accent:focus-visible{ background:var(--accent); color:var(--white); }
+  .hero-link{
+    display:inline-flex; align-items:center; gap:0.4rem;
+    color:var(--white);
+    font-weight:600;
+    text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,0.4);
+    padding-bottom:2px;
+  }
+  .hero-link:hover, .hero-link:focus-visible{ color:var(--accent); border-color:var(--accent); }
+
+  .hero-tags{
+    display:flex;
+    border-radius:14px;
+    overflow:hidden;
+    background:rgba(255,255,255,0.14);
+    border:1px solid rgba(255,255,255,0.25);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+  }
+  .hero-tag{
+    flex:1;
+    padding:1rem 1.5rem;
+    font-size:0.76rem;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--white);
+    border-right:1px solid rgba(255,255,255,0.25);
+  }
+  .hero-tag:last-child{ border-right:none; }
+  @media (max-width:700px){
+    .hero-tags{ flex-direction:column; border-radius:12px; }
+    .hero-tag{ border-right:none; border-bottom:1px solid rgba(255,255,255,0.25); }
+    .hero-tag:last-child{ border-bottom:none; }
+  }
 
   /* ---------------------------------------------------------
      LOGO WALLS (client + insurer)
@@ -578,7 +649,7 @@
   .field input:focus, .field select:focus, .field textarea:focus{
     outline:none;
     border-color:var(--primary);
-    box-shadow:0 0 0 3px rgba(180,231,23,0.4);
+    box-shadow:0 0 0 3px rgba(132,136,138,0.4);
   }
   .field textarea{ resize:vertical; min-height:110px; }
   .form-confirm{
@@ -662,7 +733,7 @@
     color:var(--primary);
     background:var(--white);
   }
-  .tag-pill--dark{ border-color:rgba(28,75,66,0.35); background:rgba(28,75,66,0.06); }
+  .tag-pill--dark{ border-color:rgba(25,117,187,0.35); background:rgba(25,117,187,0.06); }
   .tag-pill--invert{ border-color:rgba(255,255,255,0.4); color:var(--white); background:transparent; }
 
   .icon-btn{
@@ -672,14 +743,14 @@
     border-radius:50%;
     background:var(--white);
     color:var(--primary);
-    box-shadow:0 1px 2px rgba(15,38,33,0.12);
+    box-shadow:0 1px 2px rgba(14,64,103,0.12);
     transition:background-color .18s ease;
   }
   .icon-btn svg{ width:18px; height:18px; transition:transform .18s ease; }
-  a.icon-btn:hover, a.icon-btn:focus-visible{ background:var(--accent); }
+  a.icon-btn:hover, a.icon-btn:focus-visible{ background:var(--accent); color:var(--white); }
   a.icon-btn:hover svg, a.icon-btn:focus-visible svg{ transform:translate(2px,-2px); }
   .icon-btn--dark{ background:var(--primary); color:var(--white); box-shadow:none; }
-  .icon-btn--dark:hover, .icon-btn--dark:focus-visible{ background:var(--accent); color:var(--primary); }
+  .icon-btn--dark:hover, .icon-btn--dark:focus-visible{ background:var(--accent); color:var(--white); }
 
   .icon-badge{
     display:inline-flex; align-items:center; justify-content:center;
@@ -707,12 +778,15 @@
     min-height:360px;
   }
   .bento-card--light{ background:var(--n-50); border:1px solid var(--n-200); }
-  .bento-card--accent{ background:var(--accent); color:var(--primary); justify-content:flex-end; }
+  .bento-card--accent{ background:var(--primary); color:var(--white); justify-content:flex-end; }
   .bento-card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:1.5rem; }
   .bento-card h3{ font-size:1.25rem; margin-bottom:0; }
-  .bento-card--accent h3{ color:var(--primary); font-size:1.15rem; }
+  .bento-card--accent h3{ color:var(--white); font-size:1.15rem; }
   .bento-card-bottom{ margin-top:auto; }
-  .bento-card-bottom .tag-pill{ margin-bottom:1rem; background:rgba(28,75,66,0.08); border-color:rgba(28,75,66,0.3); }
+  .bento-card-bottom .tag-pill{ margin-bottom:1rem; background:rgba(25,117,187,0.08); border-color:rgba(25,117,187,0.3); }
+  .bento-card--accent .bento-card-bottom .tag-pill{ background:transparent; border-color:rgba(255,255,255,0.4); color:var(--white); }
+  .bento-card--accent .icon-btn{ background:var(--white); color:var(--primary); }
+  .bento-card--accent .icon-btn:hover, .bento-card--accent .icon-btn:focus-visible{ background:var(--accent); color:var(--white); }
   .bento-card-row{ display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; }
   .bento-graphic{ margin-top:auto; flex:1; display:flex; align-items:flex-end; justify-content:flex-end; min-height:110px; }
   .bento-graphic svg{ width:100%; height:auto; max-height:130px; }
@@ -809,7 +883,8 @@
     font-family:var(--font-heading); font-weight:600; color:var(--accent);
   }
   .highlight-card{
-    background:var(--accent);
+    background:var(--n-50);
+    border:1px solid var(--n-200);
     color:var(--primary);
     border-radius:16px;
     padding:clamp(2rem,3vw,2.75rem);
@@ -817,12 +892,12 @@
     min-height:340px;
   }
   .highlight-card .tag-pill--dark{ align-self:flex-start; margin-bottom:1.25rem; }
-  .highlight-card .icon-badge{ background:var(--primary); color:var(--accent); }
+  .highlight-card .icon-badge{ background:var(--primary); color:var(--white); }
   .highlight-card h3{ color:var(--primary); font-size:1.4rem; margin-bottom:1.5rem; }
   .highlight-stat{
     margin-top:auto;
     padding-top:1.5rem;
-    border-top:1px solid rgba(28,75,66,0.2);
+    border-top:1px solid rgba(25,117,187,0.2);
     display:flex; align-items:baseline; gap:1rem;
     margin-bottom:1.75rem;
   }
@@ -851,10 +926,11 @@
 </div>
 
 <!-- ============ HEADER ============ -->
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="container">
     <a class="brand" href="#main" aria-label="Miran Insurance Brokers Ltd — home">
-      <img src="assets/company-logo.svg" alt="Miran Insurance Brokers Ltd" width="240" height="64">
+      <img class="brand-logo brand-logo--light" src="assets/footer-logo.svg" alt="Miran Insurance Brokers Ltd" width="240" height="64">
+      <img class="brand-logo brand-logo--dark" src="assets/company-logo.svg" alt="Miran Insurance Brokers Ltd" width="240" height="64">
     </a>
 
     <nav class="main-nav" id="main-nav" aria-label="Primary">
@@ -881,13 +957,20 @@
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="container hero-inner">
-      <p class="eyebrow">Corporate &amp; Commercial Risk Brokers</p>
-      <h1>Kenya&rsquo;s institutions trust us with their risk.</h1>
+      <h1>Kenya&rsquo;s institutions<span class="hero-rule" aria-hidden="true"></span><br>trust us with their risk.</h1>
       <p>Miran Insurance Brokers has placed and managed commercial risk programmes for Kenya&rsquo;s ports, airports, revenue authority and universities since 2003. ISO 9001:2015 certified.</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary">Request a Quote</a>
-        <a href="tel:+254208146932" class="btn btn-outline-invert">Talk to a broker</a>
+        <a href="#contact" class="icon-btn icon-btn--accent" aria-label="Request a Quote">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+        <a href="tel:+254208146932" class="hero-link">Talk to a broker &rarr;</a>
       </div>
+    </div>
+    <div class="container hero-tags">
+      <span class="hero-tag">Risk Placement</span>
+      <span class="hero-tag">Claims Advocacy</span>
+      <span class="hero-tag">ISO 9001:2015 Certified</span>
     </div>
   </section>
 
@@ -959,9 +1042,9 @@
           <h3>A full-line broker built for Kenya&rsquo;s institutions</h3>
           <div class="bento-graphic" aria-hidden="true">
             <svg viewBox="0 0 160 120" fill="none">
-              <circle cx="60" cy="60" r="46" stroke="#C3CFC0" stroke-width="1.5"/>
-              <circle cx="95" cy="60" r="32" stroke="#1C4B42" stroke-width="1.5" opacity="0.35"/>
-              <circle cx="60" cy="60" r="6" fill="#B4E717"/>
+              <circle cx="60" cy="60" r="46" stroke="#C0CCD6" stroke-width="1.5"/>
+              <circle cx="95" cy="60" r="32" stroke="#1975BB" stroke-width="1.5" opacity="0.35"/>
+              <circle cx="60" cy="60" r="6" fill="#84888A"/>
             </svg>
           </div>
         </div>
@@ -969,16 +1052,16 @@
         <div class="bento-card bento-card--accent">
           <div class="bento-blob" aria-hidden="true">
             <svg viewBox="0 0 140 140" fill="none">
-              <circle cx="70" cy="70" r="52" fill="rgba(28,75,66,0.12)"/>
-              <circle cx="70" cy="70" r="52" stroke="#1C4B42" stroke-width="1.5" stroke-dasharray="4 4"/>
-              <path d="M50 70l14 14 26-30" stroke="#1C4B42" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="70" cy="70" r="52" fill="rgba(255,255,255,0.1)"/>
+              <circle cx="70" cy="70" r="52" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <path d="M50 70l14 14 26-30" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </div>
           <div class="bento-card-bottom">
             <span class="tag-pill tag-pill--dark">Credentials</span>
             <div class="bento-card-row">
               <h3>ISO 9001:2015<br>certified broker</h3>
-              <a href="#quality" class="icon-btn icon-btn--dark" aria-label="See our ISO 9001:2015 certification">
+              <a href="#quality" class="icon-btn" aria-label="See our ISO 9001:2015 certification">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
               </a>
             </div>
@@ -995,10 +1078,10 @@
           <h3>Claim forms and direct broker support</h3>
           <div class="bento-graphic" aria-hidden="true">
             <svg viewBox="0 0 160 120" fill="none">
-              <rect x="40" y="16" width="70" height="92" rx="6" stroke="#C3CFC0" stroke-width="1.5"/>
-              <line x1="52" y1="38" x2="98" y2="38" stroke="#1C4B42" stroke-width="2" opacity="0.5"/>
-              <line x1="52" y1="52" x2="98" y2="52" stroke="#1C4B42" stroke-width="2" opacity="0.5"/>
-              <line x1="52" y1="66" x2="86" y2="66" stroke="#B4E717" stroke-width="3"/>
+              <rect x="40" y="16" width="70" height="92" rx="6" stroke="#C0CCD6" stroke-width="1.5"/>
+              <line x1="52" y1="38" x2="98" y2="38" stroke="#1975BB" stroke-width="2" opacity="0.5"/>
+              <line x1="52" y1="52" x2="98" y2="52" stroke="#1975BB" stroke-width="2" opacity="0.5"/>
+              <line x1="52" y1="66" x2="86" y2="66" stroke="#84888A" stroke-width="3"/>
             </svg>
           </div>
         </div>
@@ -1089,22 +1172,22 @@
       <h2>Independent advice that puts institutions first<span class="philosophy-rule" aria-hidden="true"></span></h2>
       <div class="philosophy-grid">
         <div class="philosophy-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4E717" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#84888A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg>
           <h3>Deep market expertise</h3>
           <p>Two decades placing risk across Kenya&rsquo;s public and private sectors, with the market relationships that come from it.</p>
         </div>
         <div class="philosophy-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4E717" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#84888A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
           <h3>Independent advocacy</h3>
           <p>We are appointed by you, not the insurer, so the claim and the renewal are argued from your side of the table.</p>
         </div>
         <div class="philosophy-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4E717" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M4 20h16"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#84888A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M4 20h16"/></svg>
           <h3>Evidence-based placement</h3>
           <p>Terms, exclusions and pricing are compared across the market before a recommendation is made.</p>
         </div>
         <div class="philosophy-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4E717" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v5h5"/><path d="M20 20v-5h-5"/><path d="M5 15a8 8 0 0014-5M19 9a8 8 0 00-14 5"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#84888A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v5h5"/><path d="M20 20v-5h-5"/><path d="M5 15a8 8 0 0014-5M19 9a8 8 0 00-14 5"/></svg>
           <h3>Renewal discipline</h3>
           <p>Cover is re-tested every year against how your organisation has actually changed.</p>
         </div>
@@ -1186,7 +1269,7 @@
         <p>Download the right form for your insurer, or call our claims line and we will handle it with them directly.</p>
       </div>
       <div class="claims-ctas">
-        <a href="#" class="btn btn-primary" style="background:var(--accent); color:var(--primary);">Claim forms</a>
+        <a href="#" class="btn btn-primary" style="background:var(--accent); color:var(--white);">Claim forms</a>
         <a href="tel:+254208146932" class="btn btn-outline-invert">Call claims</a>
       </div>
     </div>
@@ -1396,6 +1479,14 @@
 
 <script>
 (function(){
+  var header = document.getElementById('site-header');
+  function updateHeaderState(){
+    if (window.scrollY > 24) { header.classList.add('is-solid'); }
+    else { header.classList.remove('is-solid'); }
+  }
+  window.addEventListener('scroll', updateHeaderState, { passive:true });
+  updateHeaderState();
+
   var toggle = document.getElementById('nav-toggle');
   var nav = document.getElementById('main-nav');
   var backdrop = document.getElementById('nav-backdrop');
